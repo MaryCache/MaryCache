@@ -1,104 +1,91 @@
-## MaryCache – Portfolio Overview
+# MaryCache – Portfolio Overview
 
 ### 1. エンジニアとしての特徴
-**「フロントエンドからバックエンドまで一貫して実装できるマルチスタック志向」**
-TypeScriptを中心とした堅牢な型定義をベースに、Vue.jsによる複雑なUI構築（フロントエンド）と、Node.js/Discord.jsを用いた自動化処理（バックエンド）の両軸で開発を行っています。
-特筆すべきは「AI（LLM）を指揮・監督する開発フロー」です。要件定義と最終責任は自身が担いつつ、実装・レビュー段階で複数のAIモデルを相互監視させることで、実務レベルのコード品質と開発スピードを両立させています。
+**「設計から実装までを一気通貫で完遂する、システム志向のエンジニア」**
 
----
-### 2. 主な作品の個別紹介
-
-#### 作品A：jjk-char-maker（Vue.js / TypeScript）
-**【業務システムにおける「複雑な入力フォーム・管理画面」の実装力】**
-
-**① リポジトリ名**
-[jjk-char-maker](https://github.com/MaryCache/jjk-char-maker)
-
-**② 開発背景（なぜ作ったか）**
-多岐にわたるパラメータと依存関係を持つデータを、ユーザーが直感的に作成・編集できるツールが必要でした。業務システムにおける「条件分岐を含む複雑なエントリーフォーム」と同様の課題解決を目指しました。
-
-**③ 使用技術**
-*   **Frontend**: Vue.js (Composition API), TypeScript
-*   **State Management**: Reactive System (ref/reactive/computed)
-*   **Architecture**: Component-based UI
-
-**④ 実装した機能（業務的観点）**
-*   **動的フォーム生成とバリデーション**: ユーザーの選択内容に応じて、入力必須項目やUIの表示/非表示を動的に切り替えるロジックの実装。
-*   **リアルタイム・プレビュー**: 入力データの変更を即座に検知し、計算結果やレイアウトへ反映させるリアクティブ処理。
-*   **データ構造化と永続化**: 複雑なオブジェクトデータをJSON形式でシリアライズし、保存・再利用可能にするI/O機能。
-
-**⑤ 技術的に成長した点**
-Vue.jsのComposition APIを用いた「ロジックとUIの分離」を徹底しました。特に、コンポーネント間で複雑に連携する状態管理（Props/Emits/Provide/Inject）を整理し、保守性の高いコード構造を設計する能力を養いました。
-
-**⑥ ソースコードの評価ポイント**
-型安全性（Type Safety）を最優先し、`any`型の使用を排除。将来的な機能拡張に耐えうるよう、インターフェース定義を明確に行っています。
+**Findy Skill Score: TypeScript 68.4 (上位数%)**
+TypeScriptを中心とした堅牢な型定義をベースに、Vue.jsによる複雑なUI構築（フロントエンド）と、Node.js/Javaを用いたバックエンドロジックの実装を両軸で行います。
+最大の特徴は、コーディング前の**「要件定義と設計」**への徹底したこだわりです。AI（LLM）を単なる生成ツールではなく「実装パートナー」として指揮・監督し、自身の設計を高速かつ高品質にコードへ変換する独自の開発フローを確立しています。
 
 ---
 
-#### 作品B：Call-of-Cthulhu-bot（Node.js / TypeScript）
-**【業務自動化における「イベント処理・テキスト解析」の実装力】**
+### 2. System Design Background（エンジニアリングの原点）
 
-**① リポジトリ名**
-[Call-of-Cthulhu-bot](https://github.com/MaryCache/Call-of-Cthulhu-bot)
+**【アナログゲーム設計による論理構築経験】**
+プログラミング習得以前より、TRPGのルールシステム構築を行ってきました。これは単なる創作ではなく、**「言語化された仕様書（ルール）に基づき、矛盾なく処理を実行する論理システム」**の設計経験です。
 
-**② 開発背景（なぜ作ったか）**
-チャットツール上での定型業務（ダイス判定、ログ記録、進行管理）を自動化し、ヒューマンエラーを排除するために開発しました。特定のルール（ビジネスロジック）に基づき、入力テキストを解析して適切な応答を返すシステムです。
+*   **State Machine Design**: 戦闘処理におけるフェーズ遷移（準備→実行→終了）の厳密な定義。
+*   **Async / Sync Control**: 複数プレイヤーの入力待機と、同期的な一斉処理のフロー構築。
+*   **Data Modeling**: キャラクターやスキルを「プロパティ」と「メソッド」を持つオブジェクトとして構造化。
 
-**③ 使用技術**
-*   **Backend**: Node.js, TypeScript
-*   **Library**: Discord.js (Event Driven)
-*   **Utility**: RegExp (正規表現), Asynchronous Processing
-
-**④ 実装した機能（業務的観点）**
-*   **コマンドラインパーサーの実装**: ユーザーからの非構造化テキスト入力を正規表現で解析し、特定のコマンドと引数に変換して処理を実行する機能。
-*   **非同期イベント処理**: 複数のユーザーからの同時リクエストに対し、Promise/Async/Awaitを用いてブロッキングさせずに並行処理する設計。
-*   **ログ監査・保全**: サーバー内の操作ログ（メッセージ削除・編集等）を自動検知し、証跡として保存する機能（discord-log-bot）。
-
-**⑤ 技術的に成長した点**
-サーバーサイド（Bot）開発特有の「エラーハンドリング」と「常時稼働の安定性」を学びました。APIのレート制限や予期せぬ入力に対する例外処理を実装し、システムが停止しない堅牢な設計を実現しています。
-
-**⑥ ソースコードの評価ポイント**
-イベントハンドラ、ロジック、定数定義を適切にモジュール分割しており、可読性とメンテナンス性を重視したディレクトリ構成を採用しています。
+この経験により、**「複雑な業務ロジックのシステム化」**を得意としています。
 
 ---
 
-### 3. 技術スタック（実務適正）
+### 3. Major Works（開発実績）
 
-フロントエンドからサーバーサイドロジックまで、一人称で開発可能なスキルセットです。
+#### Project A：Gundam TRPG Ecosystem（統合運用システム）
+**【仕様策定・Web・Botが連携する分散型システム】**
 
-*   **Languages**: TypeScript (Production Level), JavaScript (ES2022+)
-*   **Frontend**: Vue.js (Composition API, Lifecycle Hooks), HTML5, CSS3 (Scoped)
-*   **Backend**: Node.js (Runtime), Discord.js (API Integration)
-*   **Tools**: Git/GitHub, VS Code, npm/yarn
-*   **DevOps**: Linux Basic Commands, Environment Variables Management
+単一のアプリではなく、仕様（ルール）・入力（Web）・処理（Bot）が連携するエコシステムを構築しました。
 
----
+*   **Core Logic ([GUNDAM-TRPG](https://github.com/MaryCache/GUNDAM-TRPG))**:
+    Markdownによる厳密な仕様策定。システム全体のSingle Source of Truth（信頼できる唯一の情報源）。
+*   **Frontend ([ms-builder](https://github.com/MaryCache/ms-builder))**:
+    Vue.js + TypeScript。「積載量」や「コスト」など、パーツ間の複雑な依存関係（Dependency）とトレードオフを解決する機体作成ツール。
+*   **Backend ([gbs-bot](https://github.com/MaryCache/gbs-gundam-battlesystem-bot))**:
+    Node.js + Discord.js。Webアプリが出力したJSONデータを読み込み、ゲーム進行を管理する実行環境。共通のデータスキーマを定義し、完全なデータ互換性を実現。
 
-### 4. AI活用による開発プロセス（AI-Augmented Development）
+#### Project B：Imadoko Rotate（試合進行管理システム）
+**【Java / Spring Boot によるバックエンド構築と高速開発】**
 
-単なるコード生成ではなく、**「AIを仮想的なチームメンバー（設計補佐・レビュアー）」として配置**し、自身はPM兼テックリードとして品質責任を持つフローを確立しています。
+*   **リポジトリ**: [imadoko-rotate](https://github.com/MaryCache/imadoko-rotate)
+*   **技術**: Java 17, Spring Boot, Vue.js, SQLite
+*   **概要**: バレーボールの複雑なローテーションルールとスコア整合性を管理するシステム。
+*   **成果**: 学習開始5日目でプロトタイプを完成。依存関係（Dependency Hell）の解消や、フロント・バック間のAPI通信実装を通じて、未知の技術領域への適応力を証明しました。
 
-1.  **要件定義（Human 100%）**
-    *   解決すべき課題の特定、必要な機能の洗い出しは完全に自身で行い、開発の方向性を決定します。
-2.  **詳細設計（Human + ChatGPT o1/4o）**
-    *   自身で考案したロジックに対し、ChatGPTと壁打ちを行い、エッジケースの漏れやデータ構造の妥当性を検証します。
-3.  **実装（Human + Copilot + ChatGPT）**
-    *   GitHub Copilotによる補完を活用しつつ、複雑な処理はChatGPTに別解を出させ、**AI同士の出力を相互監視（クロスチェック）**させます。最終的に自身が最適解を統合・判断してコーディングします。
-4.  **コードレビュー（Human Judge）**
-    *   「実装意図を理解するChatGPT」と「全ファイル構造を把握するCopilot」の両者にレビューを依頼。指摘内容を自身で精査し、採用・不採用を決定します。
-5.  **最終監査（Human + Deep Research）**
-    *   ChatGPT Deep Research等を用い、セキュリティリスクや最新のベストプラクティスとの乖離がないかを確認。最終的なデバッグと品質保証は自身の手で行います。
+#### Project C：Cthulhu Support Bot（UX特化型Bot）
+**【プラットフォーム制約の突破とUX最適化】**
 
-**このフローにより、個人の開発スピードを維持しつつ、実務チーム開発に近い「多角的な視点での品質担保」を実現しています。**
-
----
-
-### 5. 今後の技術目標
-
-*   **テスト駆動開発（TDD）の導入**: Jest/Vitestを用いた単体テストをワークフローに組み込み、機能追加時のリグレッションテストを自動化する環境を構築します。
-*   **バックエンド連携の強化**: 現在のNode.js Bot開発経験を活かし、Express/NestJSを用いたRESTful APIサーバーの構築や、RDB（PostgreSQL等）との連携に挑戦し、フルスタックエンジニアとしての対応領域を広げます。
+*   **リポジトリ**: [Call-of-Cthulhu-bot](https://github.com/MaryCache/Call-of-Cthulhu-bot)
+*   **概要**: 外部サイトデータ連携とリアルタイムステータス更新機能を備えたBot。
+*   **技術的挑戦**:
+    *   **Data Integration**: 外部サイトの出力データを解析・変換して取り込むインポート機能。
+    *   **Stateful UX**: Discord APIを活用し、メッセージを「追記」するのではなく「編集」することで、ログを汚さずにステータスを可視化するリアルタイム更新処理。
 
 ---
 
-### 6. ポートフォリオ要約
-TypeScriptを共通言語として、Vue.jsによる「動的UI開発」とNode.jsによる「業務自動化ロジック」の両方を実装できるエンジニアです。TRPGツール開発で培った複雑な状態管理やテキスト解析技術は、そのまま業務アプリケーション開発に応用可能です。また、要件定義から最終監査までAIを高度に活用した開発フローを確立しており、品質と速度を両立した即戦力として貢献いたします。
+### 4. Tech Stack（技術スタック）
+
+フロントエンドのUI設計から、型安全なロジック実装、バックエンドのAPI構築まで対応可能です。
+
+*   **Languages**: TypeScript (Main / Findy 68.4), JavaScript, Java, HTML5, CSS3
+*   **Frontend**: Vue.js (Composition API / Script Setup), TailwindCSS
+*   **Backend**: Node.js, Discord.js, Spring Boot (Basic)
+*   **Tools**: Git/GitHub, VS Code, Vite, Figma/ClipStudio (UI Design)
+
+---
+
+### 5. AI-Augmented Development（開発プロセス）
+
+**「AIに思考を丸投げせず、仕様を完全に支配した上で実装させる」**
+自身はPM兼テックリードとして振る舞い、AIをエンジニアとして稼働させるフローを採用しています。
+
+1.  **Requirement Definition (Human)**: 解決すべき課題の特定と「あるべきユーザー体験」の定義。
+2.  **Logic Design (Human)**: アルゴリズムとデータ構造の確定。AIに推測の余地を与えないレベルまで仕様を詰める。
+3.  **Implementation (AI + Human)**: GitHub Copilot / ChatGPTを活用し、高速コーディング。生成されたコードは必ず自身でレビューし、ロジックの整合性を担保する。
+4.  **Refactoring (Human + AI)**: 可読性と保守性（コンポーネント分割など）の観点からコードを最適化。
+
+---
+
+### 6. Future Goals（今後の目標）
+
+*   **テスト駆動開発（TDD）の導入**: Jest/Vitestを用いたテスト自動化により、リファクタリング耐性の高いコードベースを構築する。
+*   **より堅牢なバックエンド連携**: Node.jsだけでなく、Java/Spring BootやRDB（PostgreSQL等）を用いた本格的なデータ永続化層の設計・実装に挑戦する。
+*   **ユーザー体験からの逆算**: 技術はあくまで手段と捉え、「ユーザーにとって最高の体験は何か」というゴールから逆算した技術選定・設計を続ける。
+
+---
+
+### Summary
+**「ロジック（式）さえ完璧なら、あとは実装するだけ」**
+この信念のもと、要件定義と設計にリソースを集中させるスタイルで開発を行っています。TRPG制作で培った論理的思考力と、AIを活用した実装力を掛け合わせ、複雑な業務課題を解決するシステムを高速に構築できるエンジニアです。
