@@ -1,16 +1,104 @@
-## Hi there 👋
+## 全体ポートフォリオ
 
-<!--
-**MaryCache/MaryCache** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+### 1. エンジニアとしての特徴
+**「フロントエンドからバックエンドまで一貫して実装できるマルチスタック志向」**
+TypeScriptを中心とした堅牢な型定義をベースに、Vue.jsによる複雑なUI構築（フロントエンド）と、Node.js/Discord.jsを用いた自動化処理（バックエンド）の両軸で開発を行っています。
+特筆すべきは「AI（LLM）を指揮・監督する開発フロー」**です。要件定義と最終責任は自身が担いつつ、実装・レビュー段階で複数のAIモデルを相互監視させることで、実務レベルのコード品質と開発スピードを両立させています。
 
-Here are some ideas to get you started:
+---
+### 2. 主な作品の個別紹介
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+#### 作品A：jjk-char-maker（Vue.js / TypeScript）
+**【業務システムにおける「複雑な入力フォーム・管理画面」の実装力】**
+
+**① リポジトリ名**
+[jjk-char-maker](https://github.com/MaryCache/jjk-char-maker)
+
+**② 開発背景（なぜ作ったか）**
+多岐にわたるパラメータと依存関係を持つデータを、ユーザーが直感的に作成・編集できるツールが必要でした。業務システムにおける「条件分岐を含む複雑なエントリーフォーム」と同様の課題解決を目指しました。
+
+**③ 使用技術**
+*   **Frontend**: Vue.js (Composition API), TypeScript
+*   **State Management**: Reactive System (ref/reactive/computed)
+*   **Architecture**: Component-based UI
+
+**④ 実装した機能（業務的観点）**
+*   **動的フォーム生成とバリデーション**: ユーザーの選択内容に応じて、入力必須項目やUIの表示/非表示を動的に切り替えるロジックの実装。
+*   **リアルタイム・プレビュー**: 入力データの変更を即座に検知し、計算結果やレイアウトへ反映させるリアクティブ処理。
+*   **データ構造化と永続化**: 複雑なオブジェクトデータをJSON形式でシリアライズし、保存・再利用可能にするI/O機能。
+
+**⑤ 技術的に成長した点**
+Vue.jsのComposition APIを用いた「ロジックとUIの分離」を徹底しました。特に、コンポーネント間で複雑に連携する状態管理（Props/Emits/Provide/Inject）を整理し、保守性の高いコード構造を設計する能力を養いました。
+
+**⑥ ソースコードの評価ポイント**
+型安全性（Type Safety）を最優先し、`any`型の使用を排除。将来的な機能拡張に耐えうるよう、インターフェース定義を明確に行っています。
+
+---
+
+#### 作品B：Call-of-Cthulhu-bot（Node.js / TypeScript）
+**【業務自動化における「イベント処理・テキスト解析」の実装力】**
+
+**① リポジトリ名**
+[Call-of-Cthulhu-bot](https://github.com/MaryCache/Call-of-Cthulhu-bot)
+
+**② 開発背景（なぜ作ったか）**
+チャットツール上での定型業務（ダイス判定、ログ記録、進行管理）を自動化し、ヒューマンエラーを排除するために開発しました。特定のルール（ビジネスロジック）に基づき、入力テキストを解析して適切な応答を返すシステムです。
+
+**③ 使用技術**
+*   **Backend**: Node.js, TypeScript
+*   **Library**: Discord.js (Event Driven)
+*   **Utility**: RegExp (正規表現), Asynchronous Processing
+
+**④ 実装した機能（業務的観点）**
+*   **コマンドラインパーサーの実装**: ユーザーからの非構造化テキスト入力を正規表現で解析し、特定のコマンドと引数に変換して処理を実行する機能。
+*   **非同期イベント処理**: 複数のユーザーからの同時リクエストに対し、Promise/Async/Awaitを用いてブロッキングさせずに並行処理する設計。
+*   **ログ監査・保全**: サーバー内の操作ログ（メッセージ削除・編集等）を自動検知し、証跡として保存する機能（discord-log-bot）。
+
+**⑤ 技術的に成長した点**
+サーバーサイド（Bot）開発特有の「エラーハンドリング」と「常時稼働の安定性」を学びました。APIのレート制限や予期せぬ入力に対する例外処理を実装し、システムが停止しない堅牢な設計を実現しています。
+
+**⑥ ソースコードの評価ポイント**
+イベントハンドラ、ロジック、定数定義を適切にモジュール分割しており、可読性とメンテナンス性を重視したディレクトリ構成を採用しています。
+
+---
+
+### 3. 技術スタック（実務適正）
+
+フロントエンドからサーバーサイドロジックまで、一人称で開発可能なスキルセットです。
+
+*   **Languages**: TypeScript (Production Level), JavaScript (ES2022+)
+*   **Frontend**: Vue.js (Composition API, Lifecycle Hooks), HTML5, CSS3 (Scoped)
+*   **Backend**: Node.js (Runtime), Discord.js (API Integration)
+*   **Tools**: Git/GitHub, VS Code, npm/yarn
+*   **DevOps**: Linux Basic Commands, Environment Variables Management
+
+---
+
+### 4. AI活用による開発プロセス（AI-Augmented Development）
+
+単なるコード生成ではなく、**「AIを仮想的なチームメンバー（設計補佐・レビュアー）」として配置**し、自身はPM兼テックリードとして品質責任を持つフローを確立しています。
+
+1.  **要件定義（Human 100%）**
+    *   解決すべき課題の特定、必要な機能の洗い出しは完全に自身で行い、開発の方向性を決定します。
+2.  **詳細設計（Human + ChatGPT o1/4o）**
+    *   自身で考案したロジックに対し、ChatGPTと壁打ちを行い、エッジケースの漏れやデータ構造の妥当性を検証します。
+3.  **実装（Human + Copilot + ChatGPT）**
+    *   GitHub Copilotによる補完を活用しつつ、複雑な処理はChatGPTに別解を出させ、**AI同士の出力を相互監視（クロスチェック）**させます。最終的に自身が最適解を統合・判断してコーディングします。
+4.  **コードレビュー（Human Judge）**
+    *   「実装意図を理解するChatGPT」と「全ファイル構造を把握するCopilot」の両者にレビューを依頼。指摘内容を自身で精査し、採用・不採用を決定します。
+5.  **最終監査（Human + Deep Research）**
+    *   ChatGPT Deep Research等を用い、セキュリティリスクや最新のベストプラクティスとの乖離がないかを確認。最終的なデバッグと品質保証は自身の手で行います。
+
+**このフローにより、個人の開発スピードを維持しつつ、実務チーム開発に近い「多角的な視点での品質担保」を実現しています。**
+
+---
+
+### 5. 今後の技術目標
+
+*   **テスト駆動開発（TDD）の導入**: Jest/Vitestを用いた単体テストをワークフローに組み込み、機能追加時のリグレッションテストを自動化する環境を構築します。
+*   **バックエンド連携の強化**: 現在のNode.js Bot開発経験を活かし、Express/NestJSを用いたRESTful APIサーバーの構築や、RDB（PostgreSQL等）との連携に挑戦し、フルスタックエンジニアとしての対応領域を広げます。
+
+---
+
+### 6. ポートフォリオ要約
+TypeScriptを共通言語として、Vue.jsによる「動的UI開発」とNode.jsによる「業務自動化ロジック」の両方を実装できるエンジニアです。TRPGツール開発で培った複雑な状態管理やテキスト解析技術は、そのまま業務アプリケーション開発に応用可能です。また、要件定義から最終監査までAIを高度に活用した開発フローを確立しており、品質と速度を両立した即戦力として貢献いたします。
