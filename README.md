@@ -12,13 +12,13 @@ TypeScriptを中心とした堅牢な型定義をベースに、Vue.jsによる�
 ### 2. System Design Background（エンジニアリングの原点）
 
 **【アナログゲーム設計による論理構築経験】**
-プログラミング習得以前より、TRPGのルールシステム構築を行ってきました。これは単なる創作ではなく、**「言語化された仕様書（ルール）に基づき、矛盾なく処理を実行する論理システム」**の設計経験です。
+プログラミング習得以前より、TRPGのルールシステム構築を行ってきました。これは単なる創作ではなく、「言語化された仕様書（ルール）に基づき、矛盾なく処理を実行する論理システム」の設計経験です。
 
 *   **State Machine Design**: 戦闘処理におけるフェーズ遷移（準備→実行→終了）の厳密な定義。
 *   **Async / Sync Control**: 複数プレイヤーの入力待機と、同期的な一斉処理のフロー構築。
 *   **Data Modeling**: キャラクターやスキルを「プロパティ」と「メソッド」を持つオブジェクトとして構造化。
 
-この経験により、**「複雑な業務ロジックのシステム化」**を得意としています。
+この経験により、「複雑な業務ロジックのシステム化」を得意としています。
 
 ---
 
@@ -31,7 +31,7 @@ TypeScriptを中心とした堅牢な型定義をベースに、Vue.jsによる�
 
 *   **Core Logic ([GUNDAM-TRPG](https://github.com/MaryCache/GUNDAM-TRPG))**:
     Markdownによる厳密な仕様策定。システム全体のSingle Source of Truth（信頼できる唯一の情報源）。
-*   **Frontend ([ms-builder](https://github.com/MaryCache/ms-builder))**:
+*   **Frontend ([ms-builder](https://github.com/MaryCache/ms-builder)/[my-character-sheet](https://github.com/MaryCache/my-character-sheet))**:
     Vue.js + TypeScript。「積載量」や「コスト」など、パーツ間の複雑な依存関係（Dependency）とトレードオフを解決する機体作成ツール。
 *   **Backend ([gbs-bot](https://github.com/MaryCache/gbs-gundam-battlesystem-bot))**:
     Node.js + Discord.js。Webアプリが出力したJSONデータを読み込み、ゲーム進行を管理する実行環境。共通のデータスキーマを定義し、完全なデータ互換性を実現。
@@ -42,7 +42,7 @@ TypeScriptを中心とした堅牢な型定義をベースに、Vue.jsによる�
 *   **リポジトリ**: [imadoko-rotate](https://github.com/MaryCache/imadoko-rotate)
 *   **技術**: Java 17, Spring Boot, Vue.js, SQLite
 *   **概要**: バレーボールの複雑なローテーションルールとスコア整合性を管理するシステム。
-*   **成果**: 学習開始5日目でプロトタイプを完成。依存関係（Dependency Hell）の解消や、フロント・バック間のAPI通信実装を通じて、未知の技術領域への適応力を証明しました。
+*   **成果**: プログラミング学習開始から5日目でプロトタイプを完成。依存関係（Dependency Hell）の解消や、フロント・バック間のAPI通信実装を通じて、未知の技術領域への適応力を証明しました。
 
 #### Project C：Cthulhu Support Bot（UX特化型Bot）
 **【プラットフォーム制約の突破とUX最適化】**
