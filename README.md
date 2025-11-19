@@ -32,7 +32,7 @@ TypeScriptを中心とした堅牢な型定義をベースに、Vue.jsによる�
 *   **Core Logic ([GUNDAM-TRPG](https://github.com/MaryCache/GUNDAM-TRPG))**:
     Markdownによる厳密な仕様策定。システム全体のSingle Source of Truth（信頼できる唯一の情報源）。
 *   **Frontend ([ms-builder](https://github.com/MaryCache/ms-builder)/[my-character-sheet](https://github.com/MaryCache/my-character-sheet))**:
-    Vue.js + TypeScript。「積載量」や「コスト」など、パーツ間の複雑な依存関係（Dependency）とトレードオフを解決する機体作成ツール。
+    Vue.js + TypeScript。「積載」と「機動」など、パーツ間の複雑な依存関係（Dependency）とトレードオフを解決する機体作成ツール。
 *   **Backend ([gbs-bot](https://github.com/MaryCache/gbs-gundam-battlesystem-bot))**:
     Node.js + Discord.js。Webアプリが出力したJSONデータを読み込み、ゲーム進行を管理する実行環境。共通のデータスキーマを定義し、完全なデータ互換性を実現。
 
@@ -72,8 +72,8 @@ TypeScriptを中心とした堅牢な型定義をベースに、Vue.jsによる�
 自身はPM兼テックリードとして振る舞い、AIをエンジニアとして稼働させるフローを採用しています。
 
 1.  **Requirement Definition (Human)**: 解決すべき課題の特定と「あるべきユーザー体験」の定義。
-2.  **Logic Design (Human)**: アルゴリズムとデータ構造の確定。AIに推測の余地を与えないレベルまで仕様を詰める。
-3.  **Implementation (AI + Human)**: GitHub Copilot / ChatGPTを活用し、高速コーディング。生成されたコードは必ず自身でレビューし、ロジックの整合性を担保する。
+2.  **Logic Design (Human)**: アルゴリズムとデータ構造の確定に加え、ディレクトリ構成や機能の分解（粒度の定義）を設計する。特にコンポーネント分割などのアーキテクチャ設計には強くこだわり、保守性と再利用性を担保した状態で、AIに推測の余地を与えないレベルまで仕様を詰める。
+3.  **Implementation (AI + Human)**: GitHub Copilot / ChatGPTを活用し、高速コーディング。生成されたコードは必ず自身で確認し、ロジックの整合性を担保する。
 4.  **Refactoring (Human + AI)**: 異なる視点を持たせた複数のAIに相互監視させ、可読性と保守性（コンポーネント分割など）の観点からコードを最適化。
 
 ---
