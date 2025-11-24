@@ -25,16 +25,17 @@ graph TD
     ChatGPT["💬 ChatGPT<br>修正指示書作成<br>(※全コードを知らない前提を明記)"]:::gpt
 
     %% --- 5. レビュー ---
-    IDE_Review["🛡️ IDE AI: 妥当性レビュー<br>リスク分析"]:::ide
+    IDE_Review["🛡️ IDE AI<br>妥当性レビュー<br>リスク分析"]:::ide
 
     %% --- 6. 判断 ---
     Judge{{"⚡ 対処法決定"}}:::risk
 
     %% --- 7. 実行 ---
-    AutoEdit["✅ IDE AI: ファイル編集"]:::ide
+    AutoEdit["✅ IDE AI<br>ファイル編集"]:::ide
     CheckComplexity{{"複雑か？"}}:::risk
-    ManualEdit["✋ 人間: コピペ対処"]:::human
-    Gemini_Assist["🤝 Gemini: 作業指示書作成<br>→ 補助"]:::gemini
+    IDE_Assist["📝 IDE AI<br>作業指示書作成"]:::ide
+    ManualEdit["✍🏻 人間<br>部分コピペ対処"]:::human
+    Gemini_Assist["🦾 Gemini<br>全文コピペ作成"]:::gemini
 
     %% --- 接続フロー ---
     HumanStart --> IDE_Find
@@ -47,8 +48,9 @@ graph TD
     IDE_Review --> Judge
     
     Judge -->|低リスク| AutoEdit
-    Judge -->|高リスク| CheckComplexity
-    
+    Judge -->|高リスク| IDE_Assist 
+
+    IDE_Assist -->CheckComplexity  
     CheckComplexity -->|No| ManualEdit
     CheckComplexity -->|Yes| Gemini_Assist
 
