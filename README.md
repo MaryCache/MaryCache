@@ -34,7 +34,7 @@ GPT / Gemini / Claude / IDE AI などの特性の異なるAIモデルを
 **「5日で作った処女作を、3ヶ月後に“実務アーキテクチャ”でフルリメイク」**
 
 * **リポジトリ**: [https://github.com/MaryCache/imadoko-remake](https://github.com/MaryCache/imadoko-remake)
-* **技術**: Next.js 16 / React 19 / TypeScript / Tailwind CSS v4 / dnd-kit / Spring Boot 3.2 / PostgreSQL / Flyway / Docker / OpenAPI
+* **技術**: Next.js 16 / TypeScript / Tailwind CSS v4 / dnd-kit / Spring Boot 3.2 / PostgreSQL / Flyway / Docker / OpenAPI
 * **主な成果**:
 
   * **Defense-First Design**
