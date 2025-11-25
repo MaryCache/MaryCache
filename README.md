@@ -1,101 +1,95 @@
-# MaryCache – Portfolio Overview
+# MaryCache – Portfolio Overview (v2.1)
 
 ### 1. エンジニアとしての特徴
-**「設計から実装までを一気通貫で完遂する、システム志向のエンジニア」**
+**「異異なる特性を持つAIモデル群を指揮し、高解像度の設計を実装まで完遂するオーケストレーター」**
 
-**Findy Skill Score: TypeScript 68.4**
-TypeScriptを中心とした堅牢な型定義をベースに、Vue.jsによる複雑なUI構築（フロントエンド）と、Node.js/Javaを用いたバックエンドロジックの実装を両軸で行います。
-最大の特徴は、コーディング前の「要件定義と設計」への徹底したこだわりです。AI（LLM）を単なる生成ツールではなく「実装パートナー」として指揮・監督し、自身の設計を高速かつ高品質にコードへ変換する独自の開発フローを確立しています。
-
-「ユーザー体験からの逆算」-技術はあくまで手段と捉え、「ユーザーにとって最高の体験は何か」というゴールから逆算した技術選定・設計を続ける姿勢を大切にしています
+フロントエンドからバックエンドまでを一気通貫で手掛けるフルサイクル・エンジニアであり、「多層的AI指揮システム（Multimodal AI Orchestration）」を確立したアーキテクトです。
+私がプロジェクトの「核（Core Vision）」を定義し、役割ごとに特化した複数のAIモデルを部下として配置・指揮することで、個人開発のスピード感と、組織開発レベルの堅牢性・網羅性を両立させています。
 
 ---
 
 ### 2. System Design Background（エンジニアリングの原点）
 
-**【アナログゲーム設計による論理構築経験】**
-プログラミング習得以前より、TRPGのルールシステム構築を行ってきました。これは単なる創作ではなく、「言語化された仕様書（ルール）に基づき、矛盾なく処理を実行する論理システム」の設計経験です。
+**【複雑系ルールセットの構造化能力】**
+エンジニアリングの根幹には、長年の「TRPGシステム設計」で培った論理構築力があります。
 
-*   **State Machine Design**: 戦闘処理におけるフェーズ遷移（準備→実行→終了）の厳密な定義。
-*   **Async / Sync Control**: 複数プレイヤーの入力待機と、同期的な一斉処理のフロー構築。
-*   **Data Modeling**: キャラクターやスキルを「プロパティ」と「メソッド」を持つオブジェクトとして構造化。
+*   **Logic Modeling**: 複雑なルールやスキル処理を、矛盾のないステートマシンとして定義する能力。
+*   **Abstraction**: 曖昧な「遊び」を「仕様」へと落とし込み、データ構造として正規化する力。
 
-この経験により、「複雑な業務ロジックのシステム化」を得意としています。
+この「アナログな複雑さをシステムに翻訳する力」が、現在の要件定義・設計力の源泉です。
 
 ---
 
-### 3. Major Works（開発実績）
+### 3. Major Works（代表作）
+
+#### Flagship: Imadoko Rota v2（高信頼性バレーボール管理システム）
+**【MVPからの脱却：実務水準のアーキテクチャへのリファクタリング】**
+
+*   **リポジトリ**: [imadoko-remake](https://github.com/MaryCache/imadoko-remake)
+*   **技術**: Next.js 16 (App Router), Spring Boot 3.2, PostgreSQL, Docker, OpenAPI
+*   **概要**: 処女作（v1）の課題であった「データ整合性」と「保守性」を解決するためにフルスクラッチで再構築。
+*   **技術的成果**:
+    *   **Defense-First Design**: LocalStorageのバージョン管理・自動修復、バックエンドの統一エラーレスポンス設計により、クラッシュ要因を構造的に排除。
+    *   **Schema-Driven**: OpenAPIをSSOT（信頼できる唯一の情報源）とし、フロント・バック間の型安全性を担保。
+    *   **UX Optimization**: `@dnd-kit` と `Framer Motion` を用いた、タッチデバイス完全対応の物理演算ライクなUI。
 
 #### Project A：Gundam TRPG Ecosystem（統合運用システム）
-**【仕様策定・Web・Botが連携する分散型システム】**
+**【仕様・Web・Botが連携する分散型システム】**
 
-単一のアプリではなく、仕様（ルール）・入力（Web）・処理（Bot）が連携するエコシステムを構築しました。
-
-*   **Core Logic ([GUNDAM-TRPG](https://github.com/MaryCache/GUNDAM-TRPG))**:
-    Markdownによる厳密な仕様策定。システム全体のSingle Source of Truth（信頼できる唯一の情報源）。
-*   **Frontend ([ms-builder](https://github.com/MaryCache/ms-builder)/[my-character-sheet](https://github.com/MaryCache/my-character-sheet))**:
-    Vue.js + TypeScript。「積載」と「機動」など、パーツ間の複雑な依存関係（Dependency）とトレードオフを解決する機体作成ツール。
-*   **Backend ([gbs-bot](https://github.com/MaryCache/gbs-gundam-battlesystem-bot))**:
-    Node.js + Discord.js。Webアプリが出力したJSONデータを読み込み、ゲーム進行を管理する実行環境。共通のデータスキーマを定義し、完全なデータ互換性を実現。
-
-#### Project B：Imadoko Rotate（試合進行管理システム）
-**【Java / Spring Boot によるバックエンド構築と高速開発】**
-
-*   **リポジトリ**: [imadoko-rotate](https://github.com/MaryCache/imadoko-rotate)
-*   **技術**: Java 17, Spring Boot, Vue.js, SQLite
-*   **概要**: バレーボールの複雑なローテーションルールとスコア整合性を管理するシステム。
-*   **成果**: プログラミング学習開始から5日目でプロトタイプを完成。依存関係（Dependency Hell）の解消や、フロント・バック間のAPI通信実装を通じて、未知の技術領域への適応力を証明しました。
-
-#### Project C：Cthulhu Support Bot（UX特化型Bot）
-**【プラットフォーム制約の突破とUX最適化】**
-
-*   **リポジトリ**: [Call-of-Cthulhu-bot](https://github.com/MaryCache/Call-of-Cthulhu-bot)
-*   **概要**: 外部サイトデータ連携とリアルタイムステータス更新機能を備えたBot。
-*   **技術的挑戦**:
-    *   **Data Integration**: 外部サイトの出力データを解析・変換して取り込むインポート機能。
-    *   **Stateful UX**: Discord APIを活用し、メッセージを「追記」するのではなく「編集」することで、ログを汚さずにステータスを可視化するリアルタイム更新処理。
+*   **リポジトリ**: [GUNDAM-TRPG](https://github.com/MaryCache/GUNDAM-TRPG)
+*   **技術**: Vue.js, Node.js, VitePress, Markdown
+*   **概要**: ルール仕様・機体作成ツール・Botが連携するエコシステム。
+*   **成果**:
+    *   **Documentation as Code**: Markdownで厳密に定義されたルール仕様をSSOTとし、**VitePress**を用いて「検索性・可読性の高いWebルールブック」としてデプロイ。ユーザー体験（UX）と仕様管理の効率を同時に最大化しました。
+    *   **Dependency Resolution**: 機体パーツ間の複雑な依存関係を解決するバリデーションロジックの実装。
 
 ---
 
 ### 4. Tech Stack（技術スタック）
 
-フロントエンドのUI設計から、型安全なロジック実装、バックエンドのAPI構築まで対応可能です。
+**Latest Focus:** モダンな型安全性と、堅牢なバックエンド設計の融合。
 
-*   **Languages**: TypeScript (Main / Findy 68.4), JavaScript, Java, HTML5, CSS3
-*   **Frontend**: Vue.js (Composition API / Script Setup), TailwindCSS
-*   **Backend**: Node.js, Discord.js, Spring Boot (Basic)
-*   **Tools**: Git/GitHub, VS Code, Vite, Figma/ClipStudio (UI Design)
-
----
-
-### 5. AI-Augmented Development（開発プロセス）
-
-**「AIを単なる生成ツールではなく、厳格なワークフローに組み込まれた『エンジニア』として稼働させる」**
-
-自身はPM兼アーキテクトとして全責任を持ち、特性の異なる複数のAIを指揮するフローを確立しています。
-
-1.  **Requirement Definition (Human)**:
-    解決すべき課題の特定と「あるべきユーザー体験」の定義。ここは完全に人間が担い、AIの推測が入る余地を排除する。
-2.  **Architecture & Prompt Engineering (Human)**:
-    アルゴリズムやディレクトリ構成を確定させる。「#1 情報共有」「#2 詳細設計」「#3 実装」という厳格なフェーズ管理をプロンプトに組み込み、設計完了の合意がない限りコードを書かせないことで、手戻りを防ぐ。
-3.  **Implementation via Context Integration (Human + Multi-AI)**:
-    AIの特性に応じた役割分担を徹底する。
-    *   **ChatGPT 5.1 (Intent / UX Context):** 人間の感情やUXの機微に対する理解力が高いモデルを採用。「なぜその機能が必要か」「ユーザーはどう感じるか」という要件定義の壁打ちを行い、仕様の質を高める。「実装指針」や「IDE用プロンプト」の生成も担当させる。
-    *   **Gemini 3.0 on IDE (Implementation Context):** 膨大なコンテキスト処理能力を活かし、リポジトリ全体を読み込ませて実装を担当。GPTで策定した仕様を、既存コードの設計思想を壊さずに高速に展開させる。
-    私がこの両者の「コンテキストの橋渡し」を行うことで、意図のズレと実装ミスを同時に防ぐ。
-4.  **Refactoring & Mutual Surveillance (Human + AI)**:
-    「要件を知るAI」と「コードを知るAI」に相互監視（クロスチェック）させ、可読性と保守性の観点から最適化。最終的な動作確認とロジックの整合性チェックは必ず自身で行う。
-
+*   **Frontend**:
+    *   **Core**: TypeScript (Expert), Next.js 16 (App Router), Vue.js
+    *   **UI/UX**: Tailwind CSS 4, Framer Motion, dnd-kit, Radix UI
+*   **Backend**:
+    *   **Java**: Spring Boot 3.2 (Layered Architecture, Global Exception Handling)
+    *   **Node.js**: Discord.js, Express
+*   **Infrastructure & Data**:
+    *   **DB**: PostgreSQL, H2, SQLite
+    *   **DevOps**: Docker Compose, GitHub Actions, Render, Vercel
+    *   **API**: OpenAPI (Swagger), Zod
 
 ---
 
-### 6. Future Goals（今後の目標）
+### 5. AI-Orchestrated Development（開発プロセス）
 
-*   **テスト駆動開発（TDD）の導入**: Jest/Vitestを用いたテスト自動化により、リファクタリング耐性の高いコードベースを構築する。
-*   **より堅牢なバックエンド連携**: Node.jsだけでなく、Java/Spring BootやRDB（PostgreSQL等）を用いた本格的なデータ永続化層の設計・実装に挑戦する。
+**「Layered AI Command System（階層型AI指揮システム）」**
+
+自身は「最高意思決定者（Commander）」としてプロジェクトの方向性を定義し、各レイヤーに特化したAIエージェント群を適材適所で稼働させるワークフローを確立しています。
+
+1.  **High-Level Strategy (Concept & Vector)**:
+    *   **Partner Model (GPT-5.1)**: 私の抽象的なアイデアや意図（ベクトル）を保存・言語化し、実装部隊へ伝達可能な「詳細設計」へと変換する右腕。共同制作者として仕様の解像度を高めます。
+2.  **Mid-Level Analysis & Review (Audit)**:
+    *   **Analyst Model (Gemini 3 Pro)**: リポジトリ全体を俯瞰し、設計の妥当性や影響範囲を解析。コードレビューやドキュメントの整合性チェックを行う参謀役。
+    *   **Stabilizer Model (Claude Sonnet 4.5)**: 出力された情報の整理・安定化を行い、ドキュメント品質や自然言語のニュアンスを調整する調整役。
+3.  **Low-Level Implementation (Execution)**:
+    *   **Engineer Model (IDE AI / Gemini 3 Pro / Claude Sonnet 4.5)**: 定義された仕様書と設計に基づき、コーディングを高速に実行する実装部隊。
+    *   **Gatekeeper**: 実装コードに対し、別のモデルを用いてリスク評価を行い、バグの混入を未然に防ぐ多重防御システム。
+
+私はこれらAIからの出力を最終的に統合・判断し、責任を持つ「人間」としてプロジェクトを完遂させます。
+
+---
+
+### 6. Future Goals（今後の展望）
+
+*   **Cloud Native Architecture**: AWS/GCPを用いた、よりスケーラブルなインフラ構築（Terraform等のIaC導入）。
+*   **Team Leadership**: AI指揮で培った「言語化能力」と「コンテキスト管理能力」を活かし、人間のチーム開発においても、認識齟齬のない円滑な設計共有とリーダーシップを発揮する。
+*   **Domain Driven Design (DDD)**: 複雑な業務ロジックを、より堅牢で美しくコードに落とし込むための設計思想の探求。
 
 ---
 
 ### Summary
 **「ロジック（式）さえ完璧なら、あとは実装するだけ」**
-この信念のもと、要件定義と設計にリソースを集中させるスタイルで開発を行っています。イラスト/デザイン制作で培ったUIデザイン設計能力、TRPG制作で培った論理的思考力と、AIを活用した実装力/コードレビュー力を掛け合わせ、複雑な業務課題を解決するシステムを高速に構築できるエンジニアです。
+この信念のもと、私は「解像度の高い要件定義」と「構造化された設計」に全リソースを集中させます。実装という"作業"は、信頼できるAIパートナーたちと共に最高速度で駆け抜ける。
+私が提供するのは、単なるコードではなく、ユーザーにとっての「最適な体験」という結果そのものです。
