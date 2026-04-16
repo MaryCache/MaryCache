@@ -1,7 +1,12 @@
+<div align="right">
+  <img src="https://komarev.com/ghpvc/?username=MaryCache&color=blueviolet&style=flat-square" />
+</div>
+
 # MaryCache
 
 **フルスタックエンジニア（個人開発）**  
-Java / TypeScript / Next.js / Spring Boot / PostgreSQL / AWS / Cloudflare
+
+<img alt="skills" src="https://skillicons.dev/icons?theme=dark&perline=8&i=ts,java,nextjs,react,vue,spring,nodejs,postgres,supabase,docker,aws,cloudflare,github,vite" />
 
 ---
 
@@ -86,6 +91,15 @@ TypeScript / Vue.js / VitePress / Node.js / Discord.js / PostgreSQL
 
 ---
 
+## Activities
+ 
+<div align="left">
+  <img alt="github stats" height="170px" src="https://github-readme-stats.vercel.app/api?username=MaryCache&theme=tokyonight&layout=compact&show_icons=true&hide_border=true" />
+  <img alt="top langs" height="170px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=MaryCache&theme=tokyonight&layout=compact&hide_border=true" />
+</div>
+
+---
+ 
 ## Development Style
 
 - 実装前にデータ構造・状態遷移・依存関係を整理する
