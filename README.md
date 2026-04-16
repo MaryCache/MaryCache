@@ -15,7 +15,7 @@ IT企業所属。業務外で継続的に個人開発を続けています。
 
 ## Projects
 
-### [hitohira-nikki](https://github.com/MaryCache/hitohira-nikki)
+### [hitohira-nikki]([https://github.com/MaryCache/hitohira-nikki](https://hitohira-nikki.cachela824.workers.dev/))
 **AI連携日記アプリ（本番稼働中）**
 
 ```
