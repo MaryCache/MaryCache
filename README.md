@@ -82,14 +82,6 @@ Vite / React 19 / TypeScript (strict) / React Compiler / Vitest / Biome
 
 ---
 
-### TRPG セッションログのまとめ（例: [無垢の神 サーガ](https://marycache.github.io/mukunokami-saga/)）
-**生ログを、発言の帰属を区別したまとめページや動画台本に変換する仕組み**
-
-Discord やココフォリアのログを決定的なパーサで中間データにし、PL / PC / GM / NPC、シナリオ内の発言とメタ雑談、ダイスを区別します。
-4卓・5年ぶんを「全文 291千字 / 読み物 57千字 / 通し読み 12千字」の3段階で持ち、要約中の引用は原文と機械照合しています（引用 808 件で不一致 0）。
-
----
-
 ### design-library と [advanced-design-md](https://github.com/MaryCache/advanced-design-md)
 **サイトのデザインを「観測した事実」と「意味付け」の2層で蓄積するライブラリ**
 
