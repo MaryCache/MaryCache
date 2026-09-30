@@ -18,7 +18,7 @@ IT企業所属。業務外で個人開発を続けています。
 「自分がシステムを理解していて、知識のない人にも分かりやすく説明・プレゼンできる状態」を「完成」と定義しています。
 
 2026年の春からは、開発の中心が「AI に手伝ってもらう」から「AI のチームを設計して運用する」に移りました。
-Claude Code をメインに置き、Codex・ローカル LLM・Gemini を役割ごとのワーカーとして使い分けています。
+Claude Code をメインに置き、作業のほとんどは Claude の中（本体とサブエージェント）で完結させています。外部のモデルに出すのは、実装と画像生成の Codex と、日本語の文章を書かせる Gemini です。
 判断の境界（何を任せて、何を確認するか）もルールとして書き出しています。
 
 ---
@@ -32,11 +32,11 @@ graph LR
   JEV["Jev (TypeSafe)<br/>ルールの曖昧さを監査"] -.-> RULE
   C --> SK["スキル 72"]
   C --> AG["サブエージェント<br/>起動可 62 + 待機 101"]
-  C --> W["外部モデルのワーカー"]
+  C --> W["外部モデル<br/>必要なときだけ"]
   W --> LUNA["Codex (GPT)<br/>区切られた実装・修正"]
   W --> IMG["Codex (GPT Image 2.5)<br/>アイコン・背景・素材の画像生成"]
-  W --> QWEN["ローカル Qwen3.8 27B<br/>読み取り調査・機密も扱える"]
-  W --> GEM["Gemini<br/>速い文章生成・調査"]
+  W --> GEM["Gemini<br/>日本語の文章"]
+  C -.->|機密を含む調査のみ| QWEN["ローカル Qwen3.8 27B"]
   C --> MEM["記憶<br/>memory・看板・日記"]
   MEM --> OPS["自己点検<br/>sleep / diet / healthcheck"]
   SK <-->|symlink で共有| GPT["ChatGPT"]
@@ -44,7 +44,7 @@ graph LR
 ```
 
 - **決裁ルール**: 操作を「可逆か × 影響がローカルか共有か」で Green（任せる）/ Yellow（確認する）/ Red（しない）に分けています。迷ったら Yellow です。ルール自体の曖昧さは、TypeSafe の Jev（System One）に同じルールで判定させ、自分の解釈と突き合わせて見つけています（ズレ 4→0、ルールに9項目を追加）。
-- **モデルの使い分け**: 重いモデルを「念のため」では使いません。探索・要約は軽いモデルかローカル、区切られた実装と画像の生成（GPT Image 2.5 で UI アイコン・背景・参考画像など）は Codex、急ぎの文章は Gemini、機密を含む調査はローカルだけ、と行き先を決めています。
+- **モデルの使い分け**: 重いモデルを「念のため」では使いません。ほとんどの作業は Claude のサブエージェントに任せ、モデルの重さは各定義で決めたとおりに使います。外部に出すのは、区切られた実装と画像の生成（GPT Image 2.5 で UI アイコン・背景・参考画像など）の Codex と、日本語の文章の Gemini だけです。機密を含む調査は外に出さず、ローカルの Qwen で行います。
 - **記憶と自己点検**: セッションで得たことを memory と看板に蒸留する `sleep`、月1回の整理 `diet`、設定の沈黙した故障を探す `healthcheck` を自作して回しています。
 - 全体像は [Claude System Map](https://marycache.github.io/claude-system-map/) にまとめています。
 
@@ -145,7 +145,7 @@ Next.js / Supabase / Cloudflare Workers / GitHub Actions
 | フロントエンド | Next.js / React / TypeScript / PWA / three.js / Remotion |
 | バックエンド・DB | Supabase / PostgreSQL（RLS・pgTAP） / Node.js / Python / Java・Spring Boot |
 | インフラ | Cloudflare Workers / GitHub Actions / Tauri / Docker |
-| AI | Claude Code（スキル・サブエージェント・hooks 設計） / Codex（実装・GPT Image 2.5 の画像生成） / ローカル LLM（llama.cpp） / Gemini |
+| AI | Claude Code（スキル・サブエージェント・hooks 設計） / Codex（実装・GPT Image 2.5 の画像生成） / ローカル LLM（llama.cpp） / Gemini（日本語の文章） |
 | 設計・開発手法 | ADR / Documentation as Code / SSoT / TDD |
 
 ---
