@@ -5,7 +5,7 @@
 # MaryCache
 
 **個人開発のフルスタックエンジニアです。
-Claude CodeにAIエージェントのチームを組み、そのチームと一緒に作っています。**
+Claude CodeでAIエージェントのチームを組み、そのチームと一緒にいろいろ作っています。**
 
 <img alt="skills" src="https://skillicons.dev/icons?theme=dark&perline=10&i=ts,nextjs,react,supabase,postgres,cloudflare,vite,threejs,py,githubactions,tauri,java,spring,docker" />
 
