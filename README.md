@@ -4,7 +4,8 @@
 
 # MaryCache
 
-**個人開発のフルスタックエンジニア。AI エージェントのチームを設計して、一緒に作っています。**
+**個人開発のフルスタックエンジニアです。
+Claude CodeにAIエージェントのチームを組み、そのチームと一緒に作っています。**
 
 <img alt="skills" src="https://skillicons.dev/icons?theme=dark&perline=10&i=ts,nextjs,react,supabase,postgres,cloudflare,vite,threejs,py,githubactions,tauri,java,spring,docker" />
 
@@ -12,10 +13,11 @@
 
 ## About
 
-IT企業所属。業務外で個人開発を続けています。
+IT企業に勤めながら、業務の外で個人開発を続けています。
 
-Claude Code をメインに置き、作業のほとんどは Claude の中（本体とサブエージェント）で完結させています。
-外部のモデルに出すのは、実装と画像生成の Codex と、日本語の文章を書かせる Gemini です。
+作業のほとんどはClaude Codeの中で、本体とサブエージェントに任せています。
+Claudeの外のモデルに出すのは3種類だけです。
+区切られた実装と画像の生成はCodex（GPT）、日本語の文章の下書きはGemini、機密を含む調査は手元のPCで動かすQwenに任せます。
 
 ---
 
@@ -26,64 +28,123 @@ graph LR
   K["私<br/>依頼と決裁"] --> C["Claude Code<br/>判断・分解・統合"]
   C --> RULE["決裁ルール<br/>Green / Yellow / Red"]
   JEV["Jev (TypeSafe)<br/>ルールの曖昧さを監査"] -.-> RULE
-  C --> SK["スキル 72"]
-  C --> AG["サブエージェント<br/>起動可 62 + 待機 101"]
-  C --> W["外部モデル<br/>必要なときだけ"]
-  W --> LUNA["Codex (GPT)<br/>区切られた実装・修正"]
-  W --> IMG["Codex (GPT Image 2.5)<br/>アイコン・背景・素材の画像生成"]
-  W --> GEM["Gemini<br/>日本語の文章"]
-  C -.->|機密を含む調査のみ| QWEN["ローカル Qwen3.8 27B"]
-  C --> MEM["記憶<br/>memory・看板・日記"]
+  C --> SK["スキル 77"]
+  C --> AG["サブエージェント<br/>すぐ使える 61 + 必要なときに足す 101"]
+  C --> W["外部のモデル<br/>必要なときだけ"]
+  W --> CODEX["Codex (GPT)<br/>区切られた実装・画像の生成"]
+  W --> GEM["Gemini<br/>日本語の文章の下書き"]
+  C -.->|機密を含む調査だけ| QWEN["手元の Qwen3.8 27B"]
+  C --> MEM["記憶<br/>memory・看板"]
   MEM --> OPS["自己点検<br/>sleep / diet / healthcheck"]
   SK <-->|symlink で共有| GPT["ChatGPT"]
-  QWEN --> BOT["Discord Bot / PC 内の司書"]
+  QWEN --> BOT["Discord Bot・PC 内の資料の調査"]
 ```
 
-- **決裁ルール**: 操作を「可逆か × 影響がローカルか共有か」で Green（任せる）/ Yellow（確認する）/ Red（しない）に分けています。迷ったら Yellow です。ルール自体の曖昧さは、TypeSafe の Jev（System One）に同じルールで判定させ、自分の解釈と突き合わせて見つけています（ズレ 4→0、ルールに9項目を追加）。
-- **モデルの使い分け**: 重いモデルを「念のため」では使いません。ほとんどの作業は Claude のサブエージェントに任せ、モデルの重さは各定義で決めたとおりに使います。外部に出すのは、区切られた実装と画像の生成（GPT Image 2.5 で UI アイコン・背景・参考画像など）の Codex と、日本語の文章の Gemini だけです。機密を含む調査は外に出さず、ローカルの Qwen で行います。
-- **記憶と自己点検**: セッションで得たことを memory と看板に蒸留する `sleep`、月1回の整理 `diet`、設定の沈黙した故障を探す `healthcheck` を自作して回しています。
-- 全体像は [Claude System Map](https://marycache.github.io/claude-system-map/) にまとめています。
+Claude Codeに何をどこまで任せるかは、決裁ルールに書いてあります。
+操作を「やり直せるか」と「影響が自分の作業の中で済むか」の2つで、Green（任せる）・Yellow（私に確認する）・Red（しない）に分けています。
+どれに当たるか分からない操作はYellowにします。
+
+ルールの文に曖昧さが残っていると、Claudeと私で読み方が分かれます。
+その曖昧さを探すために、TypeSafeのJev（System One）を使いました。
+Jevは、文章を生成するかわりに、与えた状況への判断（選択肢の確率など）を返すモデルです。
+
+同じルールと同じ操作の例をJevにも判定させ、Claudeの判定と食い違う箇所を探しました。
+食い違いは4件から0件になり、ルールには9項目を足しました。
+
+Claude Codeには、会話をまたいで残すメモのファイル（memory）と、作業の状態を書いたMarkdownのかんばん（看板）を持たせています。
+セッションで分かったことは、終わるときに`sleep`でこの2つへ書き移します。
+月に1回`diet`でmemory・看板・レビューの記録のうち古いものを減らし、`healthcheck`で、エラーを出さずに止まっている設定がないかを調べます。
+
+全体の図は[Claude System Map](https://marycache.github.io/claude-system-map/)にあります。
 
 ---
 
-## Projects
+## 公開しているもの
 
-### takubase（非公開・本番稼働中）
-**クトゥルフ神話TRPG の卓を、募集からセッション・記録までまとめて回すプラットフォーム**
+### [claude-code-companion-mod](https://github.com/MaryCache/claude-code-companion-mod)
+**Claude Codeの会話の横に出すパネル（Claude Codeのmod）**
 
 ```
-Next.js 16 / React 19 / Supabase (Postgres・Realtime・Auth) / Cloudflare Workers / PWA / Tauri
+TypeScript (TSX) / Claude Code plugin (mod)
 ```
 
-Discord にログが流れて追えなくなる問題を、最初から「検索できる資産」として設計し直すのが狙いです。
-グループ、キャラクター管理、セッションルーム（チャンネル・チャット・ダイス・盤面・BGM）、個人とグループのカレンダー（ICS 配信）、Discord Bot があります。
+パネルには次の4つが出ます。
 
-- マイグレーション 106 本、RLS を 37 テーブルに、ポリシー 141 件
-- pgTAP 726 アサーションで認可を検査し、Vitest でアプリ側を検査
-- モバイル対応は「シェルだけを PC とモバイルに分け、中身は共有」と ADR に残して決めた
-- 画面遷移のワイプは View Transitions API を使わず自作した（Realtime の非同期更新と噛み合わないため）
-- Windows 向けに Tauri のデスクトップ版も用意
+- Markdownで書いたかんばん
+- Claudeが作ったファイルのうち、私に「見てほしい」と示したものの一覧
+- 使用量のバー
+- Claudeの返事に合わせて表情が変わる、ドット絵の相棒
+
+公開する前に、コードレビュー用のサブエージェント2体（実装の観点と設計の観点）のレビューを3回通しました。
+
+---
+
+### [ja-cold-reader](https://github.com/MaryCache/ja-cold-reader)
+**日本語の説明文を、人に見せる前に仕上げるClaude Codeのスキル2つ**
+
+`cold-reader`は、書き上げた文章を、書いた経緯を知らないサブエージェントに読ませます。
+書き手が前提を書き忘れたせいで読めない箇所を、6つの型に分けて指摘させ、書き手が直します。
+6つの型は、指すものが決まらない、呼び名の言い直し、借りた言葉を中身を書かずに使う、誰も言っていないことの否定、最後の段落での言い直し、誰の話かが抜けて一般論に読める、です。
+`line-layout`は、文ごとに改行し、役割の塊ごとに空行を入れます。
+
+Claudeに、Discordでの技術的な質問1つへの返事を4本書かせて比べると、6つの型の失敗は、`cold-reader`を使わない2本で4件と7件、使った2本で1件と0件でした。
+各2本なので、目安の数です。
+
+このREADMEも、`cold-reader`に読ませて直しました。
 
 ---
 
 ### [ymm4-script-editor](https://github.com/MaryCache/ymm4-script-editor)（[デモ](https://marycache.github.io/ymm4-script-editor/)）
-**YukkuriMovieMaker4 向けの台本エディタ（ブラウザ完結の PWA）**
+**YukkuriMovieMaker4向けの台本エディタ（ブラウザだけで動くPWA）**
 
 ```
 Vite / React 19 / TypeScript (strict) / React Compiler / Vitest / Biome
 ```
 
-キャラ × セリフの台本を編集し、CSV・`.ymscript`・Markdown で入出力します。AI に作らせた台本をそのまま読み込めます。
-バックエンドも外部通信もなく、状態は1か所に集め、utils は副作用のない純関数にしています。
+キャラとセリフの組を並べた台本を編集し、CSV・`.ymscript`・Markdownで読み書きします。
+AIに書かせた台本も、そのまま読み込めます。
+
+サーバーを持たず、外部とも通信しません。
+状態は1か所にまとめ、utilsは副作用のない純関数にしています。
 
 ---
 
-### design-library と [advanced-design-md](https://github.com/MaryCache/advanced-design-md)
-**サイトのデザインを「観測した事実」と「意味付け」の2層で蓄積するライブラリ**
+### [advanced-design-md](https://github.com/MaryCache/advanced-design-md)
+**サイトのURLからデザインの仕様書（DESIGN.md）を作る道具**
 
-参照サイト 19 件を、取り出した値だけの VANILLA と、その値に名前と意味を付ける INTERPRETED に分けて持っています。配色・パーツ・アニメーション・書体のレシピもあります。
-新しい UI は「ヒアリングで DESIGN.md を作る → ライブラリの具体値で補強する → 実装する」の流れで作ります。
-公開しているのは道具の部分（URL からの抽出とクイズ形式の生成）で、MIT ライセンスです。
+下のdesign-libraryのうち、URLからの抽出と、クイズ形式で仕様書を作る部分を公開しています（MITライセンス）。
+
+---
+
+## 非公開で作っているもの
+
+### takubase（本番で稼働中）
+**クトゥルフ神話TRPGの卓を、募集からセッション・記録までまとめて回すプラットフォーム**
+
+```
+Next.js 16 / React 19 / Supabase (Postgres・Realtime・Auth) / Cloudflare Workers / PWA / Tauri
+```
+
+Discordで遊ぶと、セッションのログが流れて後から追えなくなります。
+takubaseは、ログを最初から検索できる記録として残す設計にしました。
+
+機能は、グループ、キャラクターの管理、セッションルーム（チャンネル・チャット・ダイス・盤面・BGM）、個人とグループのカレンダー（ICSで配信）、Discord Botです。
+
+- マイグレーションは106本で、37のテーブルにRLSをかけています
+- 認可はpgTAPの726件のアサーションで、アプリ側はVitestで検査しています
+- モバイル対応では、外枠だけをPC用とモバイル用に分け、中の画面は共有すると決め、ADRに残しました
+- 画面を切り替えるときのワイプは自作しました。View Transitions APIは、Realtimeによる非同期の更新と噛み合わなかったためです
+- Windows向けにTauriのデスクトップ版もあります
+
+---
+
+### design-library
+**サイトのデザインを「観測した値」と「その値の意味」の2層で貯めるライブラリ**
+
+参照したサイト19件のそれぞれについて、取り出した値だけをVANILLAに、その値に付けた名前と意味をINTERPRETEDに分けて持っています。
+配色・パーツ・アニメーション・書体のレシピもあります。
+
+新しいUIは、ヒアリングでDESIGN.mdを作り、このライブラリの具体的な値で補い、それから実装する、の順で作ります。
 
 ---
 
@@ -94,41 +155,45 @@ Vite / React 19 / TypeScript (strict) / React Compiler / Vitest / Biome
 Remotion / three.js / Canvas 2D
 ```
 
-テロップの型 169 件、文字の出入りの部品 860 件、Remotion で作るトランジションがあります。
-どれも「データが真実源で、ブラウザで開くだけで目で確かめられる」形にしています。
+テロップの型が165件、文字の出入りの部品が860件あり、Remotionで作ったトランジションもあります。
+どの部品も値をデータとして持ち、ブラウザで開けばその場で動きを確かめられます。
+最近は、効果音とBGMの入れ方、光の入れ方、three.jsの立体文字の判断の基準も足しています。
 
 ---
 
 ### doc-standards
-**開発ドキュメントの「書くべき深さ」を揃える粒度標準**
+**開発ドキュメントの「どこまで書くか」をそろえる標準**
 
-要件定義からテスト仕様まで、ADR・RFC などアジャイル系も含む 19 種類に対応しています。
-手法に依存しない原則層と手法別のレシピ層に分け、見出しの欠落などは Python の検査で機械的に判定しています。
+要件定義からテスト仕様までの13種類と、ADR・RFCなどアジャイルの6種類、合わせて19種類に対応しています。
+どの開発手法にも共通する原則と、ウォーターフォール・アジャイルそれぞれの文書のレシピを分けて持ちます。
+必須の見出しが欠けていないかなどは、Pythonのスクリプトで検査します。
 
 ---
 
-### ローカル LLM の共有基盤
-**RTX 5070 1枚の Qwen3.8 27B を、PC 内の司書・Discord Bot・コーディング補助で共有**
+### 手元のLLMの共有基盤
+**RTX 5070 1枚で動かすQwen3.8 27Bを、PC内の資料の調査・Discord Bot・コーディングの補助で共有**
 
-起動前に VRAM の空き・ポート・ロックを検査して、足りなければ起動を拒否します。
-Discord Bot は会話の要約・過去の発言探し・出典つきの調べものをします。ログにプロンプトや応答の本文は残しません。
+起動する前にVRAMの空き・ポート・ロックを調べ、足りなければ起動しません。
+
+Discord Botは、会話の要約、過去の発言の検索、出典つきの調べものをします。
+Botのログには、プロンプトと応答の本文を残しません。
 
 ---
 
 ### [hitohira-nikki](https://hitohira-nikki.cachela824.workers.dev/)（稼働中）
-**AI 連携の日記アプリ**
+**AIと連携する日記アプリ**
 
 ```
 Next.js / Supabase / Cloudflare Workers / GitHub Actions
 ```
 
-会話から日記の JSON を作って取り込み、11軸の感情スコアを5カテゴリにまとめて見せます。
+AIとの会話から日記のJSONを作って取り込み、11軸の感情スコアを5つのカテゴリにまとめて見せます。
 
 <details>
 <summary>以前の作品</summary>
 
-- [imadoko-remake](https://github.com/MaryCache/imadoko-remake) — バレーボール座席管理アプリのリメイク（Next.js / Java 21 / Spring Boot / OpenAPI）。「とにかく動かす」から「設計から入る」へ移った作品
-- [GUNDAM-TRPG](https://github.com/MaryCache/GUNDAM-TRPG) — 自作 TRPG システムのルールブック・キャラ作成アプリ・Discord Bot（Vue / VitePress / Discord.js）。ゲームルールを設計として扱った経験が土台
+- [imadoko-remake](https://github.com/MaryCache/imadoko-remake) — バレーボールの座席を管理するアプリの作り直し（Next.js / Java 21 / Spring Boot / OpenAPI）。とにかく動かしていた作り方から、設計から入る作り方へ移った作品です
+- [GUNDAM-TRPG](https://github.com/MaryCache/GUNDAM-TRPG) — 自作のTRPGのルールブック、キャラ作成アプリ、Discord Bot（Vue / VitePress / Discord.js）。ゲームのルールを設計として扱った経験が、今の作り方の土台です
 
 </details>
 
@@ -141,7 +206,7 @@ Next.js / Supabase / Cloudflare Workers / GitHub Actions
 | フロントエンド | Next.js / React / TypeScript / PWA / three.js / Remotion |
 | バックエンド・DB | Supabase / PostgreSQL（RLS・pgTAP） / Node.js / Python / Java・Spring Boot |
 | インフラ | Cloudflare Workers / GitHub Actions / Tauri / Docker |
-| AI | Claude Code（スキル・サブエージェント・hooks 設計） / Codex（実装・GPT Image 2.5 の画像生成） / ローカル LLM（llama.cpp） / Gemini（日本語の文章） |
+| AI | Claude Code（スキル・サブエージェント・hooks・mod） / Codex（実装・画像の生成） / 手元の LLM（llama.cpp） / Gemini（日本語の文章） |
 | 設計・開発手法 | ADR / Documentation as Code / SSoT / TDD |
 
 ---
@@ -157,11 +222,10 @@ Next.js / Supabase / Cloudflare Workers / GitHub Actions
 
 ## Development Style
 
-- 実装前にデータ構造・状態遷移・依存関係を整理する
-- 仕様・実装・ドキュメントの乖離を構造で防ぐ（真実源は1つ）
-- 認可・エラー処理・テストは後付けにせず、設計の段階で入れる
-- AI に任せる範囲と人が確認する範囲を、ルールとして書き出してから任せる
-- AI の出力は証拠として扱い、正しさの証明にはしない。検査は機械でできるものから機械にする
+- 実装の前に、データ構造・状態遷移・依存関係を整理します
+- 仕様・実装・ドキュメントの内容を、それぞれ1か所だけに書き、食い違いが出ない構造にします
+- 認可・エラー処理・テストは、後から足さずに設計の段階で入れます
+- AIの出力は確かめる材料として扱い、それだけで正しいとはみなしません。機械で検査できるものは機械で検査します
 
 ---
 
